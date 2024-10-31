@@ -20,10 +20,14 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public Command setHeight(Measure<Distance> height){
     return  run(()->{
-
+      height.in(Units.Meters);
     });
   }
 
+  public Measure<Distance> getHeight()
+  {
+    return Units.Meters.of(0);
+  }
   public boolean elevatorLowLimit(){
     return false;
   }
@@ -32,9 +36,9 @@ public class ElevatorSubsystem extends SubsystemBase {
     return false;
   }
 
-  public Trigger rightHeight(){
+  public Trigger rightHeight(Measure<Distance> low, Measure<Distance> high){
     return new Trigger(()-> {
-      return ());
+      return getHeight().gt(low) && getHeight().lte(high);
     });
   }
   @Override

@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.Units;
 
 public class ScoringSuperstructure {
     private ArmSubsystem arm;
@@ -16,7 +17,7 @@ public class ScoringSuperstructure {
 
     public void setupArmAutoIntake()
     {
-        arm.armBetweenAngles(Rotation2d.fromDegrees(100), Rotation2d.fromDegrees((150)))
+        arm.armBetweenAngles(Units.Degrees.of(100), Units.Degrees.of(150))
                 .whileTrue(intake.intake());
     }
 }

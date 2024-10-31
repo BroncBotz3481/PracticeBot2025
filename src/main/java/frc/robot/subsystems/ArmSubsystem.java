@@ -5,42 +5,56 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.Angle;
+import edu.wpi.first.units.Measure;
+import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
-public class ArmSubsystem extends SubsystemBase {
-  /** Creates a new ArmSubsystem. */
-  public ArmSubsystem() {}
+public class ArmSubsystem extends SubsystemBase
+{
 
-  public Command setArmAngle(Rotation2d angle) {
-    return  run(()->{
+  /**
+   * Creates a new ArmSubsystem.
+   */
+  public ArmSubsystem()
+  {
+  }
+
+  public Command setArmAngle(Rotation2d angle)
+  {
+    return run(() -> {
 
     });
   }
 
-  public boolean getHighLimit() {
+  public boolean getHighLimit()
+  {
     return false;
   }
 
-  public boolean getLowLimit () {
+  public boolean getLowLimit()
+  {
     return false;
   }
 
-  public Rotation2d getArmAngle() {
-    return Rotation2d.fromDegrees(0);
+  public Measure<Angle> getArmAngle()
+  {
+    return Units.Degrees.of(0);
   }
 
-  public Trigger armBetweenAngles(Rotation2d startAngle, Rotation2d endAngle) {
-    return new Trigger(()-> {
-      return (this.getArmAngle().getDegrees() > startAngle.getDegrees()) &&
-            (this.getArmAngle().getDegrees() < endAngle.getDegrees());
+  public Trigger armBetweenAngles(Measure<Angle> startAngle, Measure<Angle> endAngle)
+  {
+    return new Trigger(() -> {
+      return this.getArmAngle().lte(endAngle) && this.getArmAngle().gte(startAngle);
     });
   }
 
 
   @Override
-  public void periodic() {
+  public void periodic()
+  {
     // This method will be called once per scheduler run
   }
 }
