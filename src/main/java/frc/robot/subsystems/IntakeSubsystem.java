@@ -10,6 +10,11 @@ public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {}
 
+  public boolean isCaptured(){
+    return false;
+  }
+
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
